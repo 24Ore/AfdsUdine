@@ -7,56 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  body { 
-    font-family: Arial, sans-serif; 
-    background: linear-gradient(135deg, #fff9c4, #fbc02d); 
-    margin: 0; 
-    padding: 2vh 5vw; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    min-height: 100vh; 
-    text-align: center; 
-  }
-  h1 { 
-    margin-bottom: 2vh; 
-    font-family: 'Pacifico', cursive; 
-    font-size: clamp(2.5em, 8vw, 4em); 
-    background: linear-gradient(45deg, #b8860b, #998a07); 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    font-weight: bold; 
-  }
-  .container { 
-    display: flex; 
-    justify-content: center; 
-    flex-wrap: wrap; 
-    gap: 3vw; 
-    margin-top: 5vh; 
-    width: 100%; 
-    max-width: 1200px; 
-  }
-  .quadrant { 
-    background-color: white; 
-    padding: 4vh 3vw; 
-    border-radius: 1em; 
-    box-shadow: 0 0.5em 1em rgba(0,0,0,0.1); 
-    width: min(90%, 300px); 
-    min-height: 25vh; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-  }
+  body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #fff9c4, #fbc02d); margin: 0; padding: 2vh 5vw; display: flex; flex-direction: column; align-items: center; min-height: 100vh; text-align: center; }
+  h1 { margin-bottom: 2vh; font-family: 'Pacifico', cursive; font-size: clamp(2.5em, 8vw, 4em); background: linear-gradient(45deg, #b8860b, #998a07); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+  .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 3vw; margin-top: 5vh; width: 100%; max-width: 1200px; }
+  .quadrant { background-color: white; padding: 4vh 3vw; border-radius: 1em; box-shadow: 0 0.5em 1em rgba(0,0,0,0.1); width: min(90%, 300px); min-height: 25vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .title { font-weight: bold; font-size: 1.5em; margin-bottom: 1.2vh; color: #555; }
-  .value { 
-    display: flex; 
-    align-items: baseline; 
-    justify-content: center; 
-    gap: 0.5em; 
-    font-size: 3.5em; 
-    color: #2c3e50; 
-  }
+  .value { display: flex; align-items: baseline; justify-content: center; gap: 0.5em; font-size: 3.5em; color: #2c3e50; }
   .unit { font-size: 0.6em; }
   .footer-small { font-size: 0.9em; color: #555; margin-top: 10vh; }
 </style>
@@ -83,14 +39,42 @@
 
 <div class="footer-small">Tutti i diritti sono riservati. AFDS Udine.</div>
 
-<script>
-  let currentP = 0, currentD = 0, currentL = 0, currentM = 0;
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  // INSERISCI QUI LO STESSO firebaseConfig USATO IN INDEX.HTML
+  const firebaseConfig = {
+    apiKey: "LA_TUA_API_KEY",
+    authDomain: "IL_TUO_PROGETTO.firebaseapp.com",
+    databaseURL: "https://IL_TUO_PROGETTO.firebaseio.com",
+    projectId: "IL_TUO_PROGETTO",
+    storageBucket: "IL_TUO_PROGETTO.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcdef"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const dataRef = ref(db, 'stats');
+
+  let oldP = 0, oldD = 0, oldL = 0, oldM = 0;
+
+  onValue(dataRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      animateIncrement('persone', oldP, data.persone);
+      animateIncrement('donazioni', oldD, data.donazioni);
+      animateIncrement('litriNumero', oldL, data.litri, true);
+      animateIncrement('millilitri', oldM, data.milli);
+      oldP = data.persone; oldD = data.donazioni; oldL = data.litri; oldM = data.milli;
+    }
+  });
 
   function animateIncrement(targetId, start, end, decimal = false) {
     const target = document.getElementById(targetId);
-    const duration = 500;
+    const duration = 800;
     const startTime = performance.now();
-    
     function update(now) {
       const progress = Math.min((now - startTime) / duration, 1);
       const val = start + (end - start) * progress;
@@ -99,26 +83,6 @@
     }
     requestAnimationFrame(update);
   }
-
-  function refreshData() {
-    const newP = parseFloat(localStorage.getItem('plasma_persone')) || 0;
-    const newD = parseFloat(localStorage.getItem('plasma_donazioni')) || 0;
-    const newL = parseFloat(localStorage.getItem('plasma_litri')) || 0;
-    const newM = parseFloat(localStorage.getItem('plasma_milli')) || 0;
-
-    if (newP !== currentP) animateIncrement('persone', currentP, newP);
-    if (newD !== currentD) animateIncrement('donazioni', currentD, newD);
-    if (newL !== currentL) animateIncrement('litriNumero', currentL, newL, true);
-    if (newM !== currentM) animateIncrement('millilitri', currentM, newM);
-
-    currentP = newP; currentD = newD; currentL = newL; currentM = newM;
-  }
-
-  window.addEventListener('storage', (e) => {
-    if (e.key && e.key.startsWith('plasma_')) refreshData();
-  });
-
-  refreshData();
 </script>
 </body>
 </html>

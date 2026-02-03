@@ -6,11 +6,9 @@
 <title>Live Donazioni Plasma - AFDS</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
 <style>
-  /* Stessi stili per coerenza visiva */
   *, *::before, *::after { box-sizing: border-box; }
   body { 
     font-family: Arial, sans-serif; 
-    /* Aggiornato a sfondo Giallo */
     background: linear-gradient(135deg, #fff9c4, #fbc02d); 
     margin: 0; 
     padding: 2vh 5vw; 
@@ -20,11 +18,45 @@
     min-height: 100vh; 
     text-align: center; 
   }
-  h1 { margin-bottom: 2vh; font-family: 'Pacifico', cursive; font-size: clamp(2.5em, 8vw, 4em); background: linear-gradient(45deg, #b8860b, #998a07); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
-  .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 3vw; margin-top: 5vh; width: 100%; max-width: 1200px; }
-  .quadrant { background-color: white; padding: 4vh 3vw; border-radius: 1em; box-shadow: 0 0.5em 1em rgba(0,0,0,0.1); width: min(90%, 300px); min-height: 25vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  h1 { 
+    margin-bottom: 2vh; 
+    font-family: 'Pacifico', cursive; 
+    font-size: clamp(2.5em, 8vw, 4em); 
+    background: linear-gradient(45deg, #b8860b, #998a07); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-weight: bold; 
+  }
+  .container { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 3vw; 
+    margin-top: 5vh; 
+    width: 100%; 
+    max-width: 1200px; 
+  }
+  .quadrant { 
+    background-color: white; 
+    padding: 4vh 3vw; 
+    border-radius: 1em; 
+    box-shadow: 0 0.5em 1em rgba(0,0,0,0.1); 
+    width: min(90%, 300px); 
+    min-height: 25vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+  }
   .title { font-weight: bold; font-size: 1.5em; margin-bottom: 1.2vh; color: #555; }
-  .value { display: flex; align-items: baseline; justify-content: center; gap: 0.5em; font-size: 3.5em; color: #2c3e50; }
+  .value { 
+    display: flex; 
+    align-items: baseline; 
+    justify-content: center; 
+    gap: 0.5em; 
+    font-size: 3.5em; 
+    color: #2c3e50; 
+  }
   .unit { font-size: 0.6em; }
   .footer-small { font-size: 0.9em; color: #555; margin-top: 10vh; }
 </style>
@@ -34,8 +66,14 @@
 <h1>Giornata del dono - 24 Ore</h1>
 
 <div class="container">
-  <div class="quadrant"><div class="title">Numero Donatori</div><div class="value" id="persone">0</div></div>
-  <div class="quadrant"><div class="title">Donazioni Plasma</div><div class="value" id="donazioni">0</div></div>
+  <div class="quadrant">
+    <div class="title">Numero Donatori</div>
+    <div class="value" id="persone">0</div>
+  </div>
+  <div class="quadrant">
+    <div class="title">Donazioni Plasma</div>
+    <div class="value" id="donazioni">0</div>
+  </div>
   <div class="quadrant">
     <div class="title">Plasma donato</div>
     <div class="value"><span id="litriNumero">0,00</span><span class="unit">litri</span></div>
@@ -77,10 +115,10 @@
   }
 
   window.addEventListener('storage', (e) => {
-    if (e.key.startsWith('plasma_')) refreshData();
+    if (e.key && e.key.startsWith('plasma_')) refreshData();
   });
 
   refreshData();
 </script>
 </body>
-</html>  
+</html>

@@ -127,7 +127,9 @@
   });
 
   document.getElementById('mailBtn').addEventListener('click', () => {
-    window.location.href = `mailto:elias.rkibi@gmail.com?subject=Report&body=Totale: ${currentData.litri.toFixed(2)} litri`;
+    // Aggiunti i destinatari richiesti separati da virgola
+    const destinatari = "elias.rkibi@gmail.com,segreteria@afdsud.it,presidente@afdsud.it";
+    window.location.href = `mailto:${destinatari}?subject=Report AFDS&body=Statistiche attuali:%0A- Donatori: ${currentData.persone}%0A- Donazioni: ${currentData.donazioni}%0A- Totale: ${currentData.litri.toFixed(2)} litri`;
   });
 
   document.getElementById('direttaBtn').addEventListener('click', () => { window.location.href = 'Diretta.html'; });

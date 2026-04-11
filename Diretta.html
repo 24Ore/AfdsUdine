@@ -16,8 +16,8 @@
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    height: 100vh; /* Blocca l'altezza alla finestra del browser */
-    overflow: hidden; /* Toglie lo scroll su PC */
+    height: 100vh; 
+    overflow: hidden; 
     text-align: center; 
   }
 
@@ -42,7 +42,7 @@
     width: 95%; 
     max-width: 1100px; 
     margin: 2vh auto;
-    flex: 1; /* Occupa lo spazio centrale */
+    flex: 1; 
     align-items: center;
   }
 
@@ -63,18 +63,28 @@
   .value { display: flex; align-items: baseline; justify-content: center; gap: 0.3em; font-size: clamp(2.5em, 5vh, 3.5em); color: #2c3e50; font-weight: bold; }
   .unit { font-size: 0.5em; }
 
-  /* Sezione Patrocini - Sfondo rimosso come richiesto */
+  /* Sezione Patrocini */
   .sponsors-section { 
     width: 100%; 
     padding: 1vh 20px; 
     margin-top: auto; 
   }
+
+  /* NUOVO: Rettangolo bianco per i loghi */
+  .logo-container-white {
+    background-color: #ffffff; /* Bianco non trasparente */
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 1vh;
+  }
   
   .patrocinio-txt { 
     font-weight: bold; 
-    font-size: 0.8em; 
-    margin-bottom: 1vh; 
-    color: #333; 
+    font-size: 0.75em; 
+    margin-bottom: 10px; 
+    color: #444; 
     letter-spacing: 1px; 
   }
   
@@ -83,20 +93,22 @@
     justify-content: center; 
     align-items: center; 
     flex-wrap: wrap; 
-    gap: 2vw; 
-    margin-bottom: 1vh; 
+    gap: 2.5vw; 
+    margin-bottom: 10px; 
   }
+
+  .logo-row:last-child { margin-bottom: 0; }
   
-  .logo-img { height: clamp(40px, 6vh, 60px); width: auto; object-fit: contain; }
-  .logo-fvg { height: clamp(35px, 5vh, 45px); } /* Rispetta dimensioni minime [cite: 12] */
+  .logo-img { height: clamp(35px, 5vh, 50px); width: auto; object-fit: contain; }
+  .logo-fvg { height: clamp(30px, 4.5vh, 40px); } 
 
-  .footer-small { font-size: 0.7em; color: #555; padding-bottom: 1vh; }
+  .footer-small { font-size: 0.7em; color: #555; padding-bottom: 1vh; margin-top: 5px; }
 
-  /* Media query per smartphone: ripristina lo scroll e layout verticale */
   @media (max-width: 768px) {
     body { overflow: auto; height: auto; }
     .container { flex-direction: column; }
     .header-logo { height: 120px; }
+    .logo-container-white { padding: 10px 15px; width: 90%; }
   }
 </style>
 </head>
@@ -123,16 +135,19 @@
 </div>
 
 <div class="sponsors-section">
-  <div class="patrocinio-txt">CON IL PATROCINIO DI</div>
-  <div class="logo-row">
-    <img src="logo stemma comune udine 2025.jpg" alt="Comune di Udine" class="logo-img">
-    <img src="logo Città Sane Udine.jpg" alt="Città Sane" class="logo-img">
-  </div>
+  <div class="logo-container-white">
+    <div class="patrocinio-txt">CON IL PATROCINIO DI</div>
+    
+    <div class="logo-row">
+      <img src="logo stemma comune udine 2025.jpg" alt="Comune di Udine" class="logo-img">
+      <img src="logo Città Sane Udine.jpg" alt="Città Sane" class="logo-img">
+    </div>
 
-  <div class="logo-row">
-    <img src="Logo Regione autonoma FVG.png" alt="Regione FVG" class="logo-img logo-fvg">
-    <img src="ASU FC FVG colore@4x.png" alt="ASU FC" class="logo-img">
-    <img src="LOGOCRFVG.JPG" alt="Consiglio Regionale FVG" class="logo-img">
+    <div class="logo-row">
+      <img src="Logo Regione autonoma FVG.png" alt="Regione FVG" class="logo-img logo-fvg">
+      <img src="ASU FC FVG colore@4x.png" alt="ASU FC" class="logo-img">
+      <img src="LOGOCRFVG.JPG" alt="Consiglio Regionale FVG" class="logo-img">
+    </div>
   </div>
   
   <div class="footer-small">Tutti i diritti sono riservati. AFDS Udine.</div>

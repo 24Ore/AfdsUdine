@@ -7,17 +7,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #fff9c4, #fbc02d); margin: 0; padding: 2vh 5vw; display: flex; flex-direction: column; align-items: center; min-height: 100vh; text-align: center; }
-  h1 { margin-bottom: 2vh; font-family: 'Pacifico', cursive; font-size: clamp(2.5em, 8vw, 4em); background: linear-gradient(45deg, #b8860b, #998a07); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
-  .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 3vw; margin-top: 5vh; width: 100%; max-width: 1200px; }
-  .quadrant { background-color: white; padding: 4vh 3vw; border-radius: 1em; box-shadow: 0 0.5em 1em rgba(0,0,0,0.1); width: min(90%, 300px); min-height: 25vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .title { font-weight: bold; font-size: 1.5em; margin-bottom: 1.2vh; color: #555; }
-  .value { display: flex; align-items: baseline; justify-content: center; gap: 0.5em; font-size: 3.5em; color: #2c3e50; }
-  .unit { font-size: 0.6em; }
-  .footer-small { font-size: 0.9em; color: #555; margin-top: 10vh; }
+  body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #fff9c4, #fbc02d); margin: 0; padding: 2vh 2vw; display: flex; flex-direction: column; align-items: center; min-height: 100vh; text-align: center; }
+  
+  /* Loghi Superiori */
+  .header-logo { max-width: 250px; height: auto; margin-top: 2vh; }
+  
+  h1 { margin: 1vh 0 3vh 0; font-family: 'Pacifico', cursive; font-size: clamp(2em, 6vw, 3.5em); background: linear-gradient(45deg, #b8860b, #998a07); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+  
+  .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; width: 100%; max-width: 1200px; margin-bottom: 5vh; }
+  .quadrant { background-color: white; padding: 30px; border-radius: 1em; box-shadow: 0 0.5em 1em rgba(0,0,0,0.1); width: min(90%, 300px); flex: 1 1 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  
+  .title { font-weight: bold; font-size: 1.3em; margin-bottom: 10px; color: #555; }
+  .value { display: flex; align-items: baseline; justify-content: center; gap: 0.3em; font-size: 3em; color: #2c3e50; font-weight: bold; }
+  .unit { font-size: 0.5em; }
+
+  /* Sezione Patrocini e Loghi Istituzionali */
+  .sponsors-section { background: rgba(255,255,255,0.7); width: 100%; padding: 20px; border-top: 1px solid rgba(0,0,0,0.1); margin-top: auto; }
+  .patrocinio-txt { font-weight: bold; font-size: 0.9em; margin-bottom: 15px; color: #333; letter-spacing: 1px; }
+  
+  .logo-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; margin-bottom: 20px; }
+  .logo-img { height: 70px; width: auto; object-fit: contain; }
+  .logo-fvg { height: 50px; } /* Rispetta dimensioni minime linee guida */
+
+  .footer-small { font-size: 0.8em; color: #555; margin-top: 10px; padding-bottom: 10px; }
 </style>
 </head>
 <body>
+
+<img src="Logo 24ore giallo.png" alt="Logo 24 Ore" class="header-logo">
 
 <h1>Giornata del dono - 24 Ore</h1>
 
@@ -33,11 +50,25 @@
   <div class="quadrant">
     <div class="title">Plasma donato</div>
     <div class="value"><span id="litriNumero">0,00</span><span class="unit">litri</span></div>
-    <div style="font-size:1.2em; margin-top:1vh;">(<span id="millilitri">0</span> ml)</div>
+    <div style="font-size:1.1em; margin-top:5px; color: #7f8c8d;">(<span id="millilitri">0</span> ml)</div>
   </div>
 </div>
 
-<div class="footer-small">Tutti i diritti sono riservati. AFDS Udine.</div>
+<div class="sponsors-section">
+  <div class="patrocinio-txt">CON IL PATROCINIO DI</div>
+  <div class="logo-row">
+    <img src="logo stemma comune udine 2025.jpg" alt="Comune di Udine" class="logo-img">
+    <img src="logo Città Sane Udine.jpg" alt="Città Sane" class="logo-img">
+  </div>
+
+  <div class="logo-row">
+    <img src="Logo Regione autonoma FVG.png" alt="Regione FVG" class="logo-img logo-fvg">
+    <img src="ASU FC FVG colore@4x.png" alt="ASU FC" class="logo-img">
+    <img src="LOGOCRFVG.JPG" alt="Consiglio Regionale FVG" class="logo-img">
+  </div>
+  
+  <div class="footer-small">Tutti i diritti sono riservati. AFDS Udine.</div>
+</div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -73,6 +104,7 @@
 
   function animateIncrement(targetId, start, end, decimal = false) {
     const target = document.getElementById(targetId);
+    if (!target) return;
     const duration = 800;
     const startTime = performance.now();
     function update(now) {

@@ -70,45 +70,45 @@
     margin-top: auto; 
   }
 
-  /* NUOVO: Rettangolo bianco per i loghi */
+  /* Rettangolo bianco per i loghi in linea */
   .logo-container-white {
-    background-color: #ffffff; /* Bianco non trasparente */
+    background-color: #ffffff; 
     display: inline-block;
-    padding: 15px 30px;
+    padding: 15px 40px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     margin-bottom: 1vh;
+    max-width: 95%;
   }
   
   .patrocinio-txt { 
     font-weight: bold; 
     font-size: 0.75em; 
-    margin-bottom: 10px; 
+    margin-bottom: 12px; 
     color: #444; 
     letter-spacing: 1px; 
   }
   
-  .logo-row { 
+  /* Loghi tutti in riga */
+  .logo-row-inline { 
     display: flex; 
     justify-content: center; 
     align-items: center; 
     flex-wrap: wrap; 
-    gap: 2.5vw; 
-    margin-bottom: 10px; 
+    gap: 2vw; 
   }
-
-  .logo-row:last-child { margin-bottom: 0; }
   
   .logo-img { height: clamp(35px, 5vh, 50px); width: auto; object-fit: contain; }
   .logo-fvg { height: clamp(30px, 4.5vh, 40px); } 
 
   .footer-small { font-size: 0.7em; color: #555; padding-bottom: 1vh; margin-top: 5px; }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     body { overflow: auto; height: auto; }
     .container { flex-direction: column; }
     .header-logo { height: 120px; }
-    .logo-container-white { padding: 10px 15px; width: 90%; }
+    .logo-container-white { padding: 15px; width: 95%; }
+    .logo-row-inline { gap: 15px; }
   }
 </style>
 </head>
@@ -138,12 +138,10 @@
   <div class="logo-container-white">
     <div class="patrocinio-txt">CON IL PATROCINIO DI</div>
     
-    <div class="logo-row">
+    <div class="logo-row-inline">
+      <img src="EP_Logo Patronage_Europea_POS_RGB_IT.jpg" alt="Parlamento Europeo" class="logo-img">
       <img src="logo stemma comune udine 2025.jpg" alt="Comune di Udine" class="logo-img">
       <img src="logo Città Sane Udine.jpg" alt="Città Sane" class="logo-img">
-    </div>
-
-    <div class="logo-row">
       <img src="Logo Regione autonoma FVG.png" alt="Regione FVG" class="logo-img logo-fvg">
       <img src="ASU FC FVG colore@4x.png" alt="ASU FC" class="logo-img">
       <img src="LOGOCRFVG.JPG" alt="Consiglio Regionale FVG" class="logo-img">

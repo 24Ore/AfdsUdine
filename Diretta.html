@@ -63,16 +63,15 @@
   .value { display: flex; align-items: baseline; justify-content: center; gap: 0.3em; font-size: clamp(2.5em, 5vh, 3.5em); color: #2c3e50; font-weight: bold; }
   .unit { font-size: 0.5em; }
 
-  /* Sezione Patrocini - Ora è una fascia a larghezza intera */
+  /* Sezione Patrocini - Fascia intera */
   .sponsors-section { 
     width: 100%; 
-    background-color: #ffffff; /* Sfondo spostato qui */
-    padding: 2vh 20px 1vh 20px; /* Spazio sopra e sotto */
+    background-color: #ffffff; 
+    padding: 2vh 20px 1vh 20px; 
     margin-top: auto; 
-    box-shadow: 0 -4px 15px rgba(0,0,0,0.05); /* Ombra verso l'alto per staccare dal giallo */
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.05); 
   }
 
-  /* Rimosso lo stile a "scatola" per lasciare spazio fluido */
   .logo-container-white {
     width: 100%;
     margin-bottom: 1vh;
@@ -86,18 +85,21 @@
     letter-spacing: 1px; 
   }
   
-  /* Loghi tutti in riga */
+  /* Loghi distribuiti su tutto lo spazio */
   .logo-row-inline { 
     display: flex; 
-    justify-content: center; 
+    justify-content: space-evenly; /* Distribuito uniformemente */
     align-items: center; 
     flex-wrap: wrap; 
-    gap: 2.5vw; /* Leggermente aumentato per far respirare i loghi più grandi */
+    gap: 2vw; 
+    width: 100%;
+    max-width: 1400px; /* Ampia estensione su desktop */
+    margin: 0 auto;
   }
   
-  /* Loghi ingranditi */
-  .logo-img { height: clamp(45px, 6.5vh, 65px); width: auto; object-fit: contain; }
-  .logo-fvg { height: clamp(40px, 5.5vh, 55px); } 
+  /* Loghi ulteriormente ingranditi */
+  .logo-img { height: clamp(55px, 7.5vh, 85px); width: auto; object-fit: contain; }
+  .logo-fvg { height: clamp(48px, 6.5vh, 73px); } 
 
   .footer-small { font-size: 0.7em; color: #777; margin-top: 8px; }
 
@@ -105,7 +107,7 @@
     body { overflow: auto; height: auto; }
     .container { flex-direction: column; }
     .header-logo { height: 120px; }
-    .logo-row-inline { gap: 15px; }
+    .logo-row-inline { gap: 15px; justify-content: center; }
     .sponsors-section { padding: 15px 10px; }
   }
 </style>
@@ -138,11 +140,11 @@
     
     <div class="logo-row-inline">
       <img src="EP_Logo Patronage_Europea_POS_RGB_IT.jpg" alt="Parlamento Europeo" class="logo-img">
+      <img src="Logo Regione autonoma FVG.png" alt="Regione FVG" class="logo-img logo-fvg">
+      <img src="LOGOCRFVG.JPG" alt="Consiglio Regionale FVG" class="logo-img">
       <img src="logo stemma comune udine 2025.jpg" alt="Comune di Udine" class="logo-img">
       <img src="logo Città Sane Udine.jpg" alt="Città Sane" class="logo-img">
-      <img src="Logo Regione autonoma FVG.png" alt="Regione FVG" class="logo-img logo-fvg">
       <img src="ASU FC FVG colore@4x.png" alt="ASU FC" class="logo-img">
-      <img src="LOGOCRFVG.JPG" alt="Consiglio Regionale FVG" class="logo-img">
     </div>
   </div>
   

@@ -63,22 +63,19 @@
   .value { display: flex; align-items: baseline; justify-content: center; gap: 0.3em; font-size: clamp(2.5em, 5vh, 3.5em); color: #2c3e50; font-weight: bold; }
   .unit { font-size: 0.5em; }
 
-  /* Sezione Patrocini */
+  /* Sezione Patrocini - Ora è una fascia a larghezza intera */
   .sponsors-section { 
     width: 100%; 
-    padding: 1vh 20px; 
+    background-color: #ffffff; /* Sfondo spostato qui */
+    padding: 2vh 20px 1vh 20px; /* Spazio sopra e sotto */
     margin-top: auto; 
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.05); /* Ombra verso l'alto per staccare dal giallo */
   }
 
-  /* Rettangolo bianco per i loghi in linea */
+  /* Rimosso lo stile a "scatola" per lasciare spazio fluido */
   .logo-container-white {
-    background-color: #ffffff; 
-    display: inline-block;
-    padding: 15px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
     margin-bottom: 1vh;
-    max-width: 95%;
   }
   
   .patrocinio-txt { 
@@ -95,20 +92,21 @@
     justify-content: center; 
     align-items: center; 
     flex-wrap: wrap; 
-    gap: 2vw; 
+    gap: 2.5vw; /* Leggermente aumentato per far respirare i loghi più grandi */
   }
   
-  .logo-img { height: clamp(35px, 5vh, 50px); width: auto; object-fit: contain; }
-  .logo-fvg { height: clamp(30px, 4.5vh, 40px); } 
+  /* Loghi ingranditi */
+  .logo-img { height: clamp(45px, 6.5vh, 65px); width: auto; object-fit: contain; }
+  .logo-fvg { height: clamp(40px, 5.5vh, 55px); } 
 
-  .footer-small { font-size: 0.7em; color: #555; padding-bottom: 1vh; margin-top: 5px; }
+  .footer-small { font-size: 0.7em; color: #777; margin-top: 8px; }
 
   @media (max-width: 900px) {
     body { overflow: auto; height: auto; }
     .container { flex-direction: column; }
     .header-logo { height: 120px; }
-    .logo-container-white { padding: 15px; width: 95%; }
     .logo-row-inline { gap: 15px; }
+    .sponsors-section { padding: 15px 10px; }
   }
 </style>
 </head>
